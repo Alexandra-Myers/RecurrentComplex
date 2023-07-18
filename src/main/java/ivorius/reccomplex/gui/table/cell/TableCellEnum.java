@@ -11,10 +11,10 @@ import ivorius.ivtoolkit.tools.IvTranslations;
 import ivorius.reccomplex.gui.table.Bounds;
 import ivorius.reccomplex.gui.table.GuiTable;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -27,14 +27,14 @@ import java.util.stream.Collectors;
  * Created by lukas on 02.06.14.
  */
 
-@SideOnly(Side.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class TableCellEnum<T> extends TableCellPropertyDefault<T>
 {
     public static final String LEFT_ARROW = TextFormatting.BOLD + "←";
     public static final String RIGHT_ARROW = TextFormatting.BOLD + "→";
 
-    protected GuiButton leftButton;
-    protected GuiButton rightButton;
+    protected Button leftButton;
+    protected Button rightButton;
 
     private List<Option<T>> options;
 
@@ -78,8 +78,8 @@ public class TableCellEnum<T> extends TableCellPropertyDefault<T>
     {
         super.setEnabled(enabled);
 
-        if (leftButton != null) leftButton.enabled = enabled;
-        if (rightButton != null) rightButton.enabled = enabled;
+        if (leftButton != null) leftButton.active = enabled;
+        if (rightButton != null) rightButton.active = enabled;
     }
 
     @Override
